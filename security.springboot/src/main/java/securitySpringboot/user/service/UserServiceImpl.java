@@ -8,11 +8,13 @@ import securitySpringboot.user.model.User;
 import securitySpringboot.user.repository.RoleRepository;
 import securitySpringboot.user.repository.UserRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
+@Transactional   // 동작하는 방식이 api가 아니라서 강제로 돌리는 것?
 @Service
 public class UserServiceImpl implements UserService {
 

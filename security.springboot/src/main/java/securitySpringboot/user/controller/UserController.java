@@ -1,16 +1,19 @@
 package securitySpringboot.user.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import securitySpringboot.user.model.User;
 import securitySpringboot.user.service.UserService;
 
 import java.util.List;
-import java.util.Optional;
 
+@CrossOrigin(origins = "*")   // ????
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
+@Slf4j
 public class UserController {
 
     private final UserService userService;
@@ -20,9 +23,14 @@ public class UserController {
         return userService.addUser(user);
     }
 
+//    @GetMapping("/user/getAll")
+//    public List<User> getAllUser() {
+//        return userService.getAllUser();
+//    }
+
     @GetMapping("/user/getAll")
-    public List<User> getAllUser() {
-        return userService.getAllUser();
+    public ResponseEntity< List<User> > getAllUser() {   // ResponseEntity로 감싼다
+        return ResponseEntity.ok().body( userService.getAllUser() );
     }
 
     @GetMapping("/user/get/{id}")

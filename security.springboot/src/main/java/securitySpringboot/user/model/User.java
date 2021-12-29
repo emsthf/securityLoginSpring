@@ -3,6 +3,7 @@ package securitySpringboot.user.model;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import securitySpringboot.util.BaseTimeEntity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import static javax.persistence.FetchType.EAGER;
 @Data
 @NoArgsConstructor
 @Entity
-public class User {
+public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
