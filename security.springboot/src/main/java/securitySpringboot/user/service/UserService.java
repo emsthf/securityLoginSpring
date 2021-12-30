@@ -1,5 +1,6 @@
 package securitySpringboot.user.service;
 
+import securitySpringboot.user.dto.UserDto;
 import securitySpringboot.user.model.Role;
 import securitySpringboot.user.model.User;
 
@@ -8,6 +9,7 @@ import java.util.Optional;
 
 public interface UserService {
     User addUser(User user);
+    User addUserDto(UserDto userDto);
     Role addRole(Role role);   // 역할 추가 추상 메소드
     void addRoleByUser(String userName, String roleName);   // 유저에 역할 부여 추상 메소드
     List<User> getAllUser();
