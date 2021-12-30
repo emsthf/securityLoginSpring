@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
+    // alt + insert로 UserDetailsService의 오버라이드 메소드 작성
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUserName(username);
@@ -51,6 +52,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User addUser(User user) {
         log.info("Saving new User to the database. : {}", user.getUserName());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
         // 우리는 공부 하는 중이기 때문에 예외처리(try~catch)는 제외하자
     }
@@ -59,6 +61,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User addUserDto(UserDto userDto) {
         log.info("Saving new User to the database. : {}", userDto.getUserName());
+        userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
         User user = User.builder()
                 .id(null)
                 .userName(userDto.getUserName())
