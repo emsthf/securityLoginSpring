@@ -38,6 +38,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     // alt + insert로 오버라이드 메소드 만들어준다
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+        // 여기에 유저가 로그인을 했을 때 토큰 발행하는 코드를 적어야 한다
         super.successfulAuthentication(request, response, chain, authResult);
     }
 }
