@@ -43,11 +43,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 여기까지는 토큰을 발행하고 처리할 준비만 하는 것
 
         http.authorizeRequests().antMatchers("/api/login/**").permitAll();                                   // 로그인 뒤에 오는 모든 api를 허가 해주겠다는 뜻
-        http.authorizeRequests().antMatchers("/api/user/save/**").hasAnyAuthority("ROLE_ADMIN");   // user/sava api는 어드민만 쓰게 허락하겠다는 뜻
-        http.authorizeRequests().antMatchers("/api/user/**").hasAnyAuthority("ROLE_USER");         // user로 들어오는 모든 권한은 유저가 쓰게 허락하겠다는 뜻
-        http.authorizeRequests().anyRequest().authenticated();                                                          // 나머지는 로그인을 해서 쓰게한다
-//        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));                                  // 우리가 만든 필터를 추가해 준다
-        http.addFilter(customAuthenticationFilter);   // 위에 객체로 생성한 우리가 만든 필터를 추가
+//        http.authorizeRequests().antMatchers("/api/user/save/**").hasAnyAuthority("ROLE_ADMIN");   // /api/user/sava/~ 로 들어오는 모든 api는 ADMIN 권한이 있어야 쓰게 허락하겠다는 뜻
+//        http.authorizeRequests().antMatchers("/api/user/**").hasAnyAuthority("ROLE_USER");         // /api/user/~로 들어오는 모든 api는 USER 권한이 있어야 쓰게 허락하겠다는 뜻
+        http.authorizeRequests().antMatchers("/api/user/**").hasAnyAuthority(("ROLE_ADMIN"));
+//        http.authorizeRequests().anyRequest().authenticated();                                                          // 나머지는 로그인을 해서 쓰게한다. 계정 생성조차 로그인이 필요해짐. 이 부분을 빼머리면 위 주소들 빼고는 로그인 없이 접근이 가능해짐
+//        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));                      ㄱ            // 우리가 만든 필터를 추가해 준다
+        http.addFilter(customAuthenticationFilter);                                                                     // 위에 객체로 생성한 우리가 만든 필터를 추가
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);              // 위 필터를 하기 전에 체크 할 필터
     }
 

@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.util.*;
 
 @Slf4j
-public class CustomAuthorizationFilter extends OncePerRequestFilter {
+public class CustomAuthorizationFilter extends OncePerRequestFilter {   // 들어온 토큰을 풀어내서 판단 하는 필터
 
     // Alt + insert로 오버라이드 메소드 doFilterInternal 선택
     @Override
