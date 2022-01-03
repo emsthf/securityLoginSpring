@@ -24,3 +24,6 @@ http://localhost:8080/api/user/getAll 로 getAllUser api를 던질 때,
 헤더에 key : Authorization/ value : Bearer 유저 토큰값 을 주면
 /api/user/**의 권한은 어드민이어야 사용할 수 있는 api 권한이므로 일반 USER 계정은 403 포비든 오류가 뜨면서
 권한이 필요하다고 하는 것을 볼 수 있다
+
+
+Step5가 Spring Security 권한 로그인 완성본
